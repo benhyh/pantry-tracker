@@ -1,36 +1,43 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+This is one of the projects I've built as part of the SWE fellowship program by Headstarter.
 
-First, run the development server:
+# Tech
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- Firebase
+- Next.js
+- React
+- GCP (Google Cloud Platform)
+- Vercel
+- CI/CD
+
+## What I learned over the course of the project
+
+### Refined search logic in search bar
+
+```
+const filteredItems = pantryItem.filter((item) =>
+  item.name.toLowerCase().split(' ').some(word =>
+    word.startsWith(searchQuery.toLowerCase())
+  )
+);
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+1. The process:
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+- Filtering process called on pantryItem array
+- Go through each item in the array and apply filtering logic
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+2. Logic:
 
-## Learn More
+- Setting it to lowercase so that the search is case-insensitive
 
-To learn more about Next.js, take a look at the following resources:
+3. `.some()`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- some() tests whether at least one element in the array passes the test implemented by the provided function
+- return true if it matches the condition, false otherwise
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+4. ` .startsWith(searchQuery.toLowerCase())`
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- Checks if the word starts with the lowercase search query
+- `.startsWith()` is a string method that determines where the string begins with the characters of a specified string

@@ -24,6 +24,7 @@ import {
   query,
   setDoc,
 } from "firebase/firestore";
+import { SettingsEthernet } from "@mui/icons-material";
 
 export default function Home() {
   const [pantryItem, setPantryItem] = useState([]);
@@ -126,7 +127,10 @@ export default function Home() {
   };
 
   const filteredItems = pantryItem.filter((item) =>
-    item.name.toLowerCase().includes(searchQuery.toLowerCase())
+    item.name
+      .toLowerCase()
+      .split(" ")
+      .some((word) => word.startsWith(searchQuery.toLowerCase()))
   );
 
   useEffect(() => {
