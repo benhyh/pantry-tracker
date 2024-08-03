@@ -25,19 +25,19 @@ const filteredItems = pantryItem.filter((item) =>
 
 1. The process:
 
-- Filtering process called on pantryItem array
-- Go through each item in the array and apply filtering logic
+   - Filtering process called on pantryItem array
+   - Go through each item in the array and apply filtering logic
 
 2. Logic:
 
-- Setting it to lowercase so that the search is case-insensitive
+   - Setting it to lowercase so that the search is case-insensitive
 
 3. `.some()`
 
-- some() tests whether at least one element in the array passes the test implemented by the provided function
-- return true if it matches the condition, false otherwise
+   - some() tests whether at least one element in the array passes the test implemented by the provided function
+   - return true if it matches the condition, false otherwise
 
 4. ` .startsWith(searchQuery.toLowerCase())`
 
-- Checks if the word starts with the lowercase search query
-- `.startsWith()` is a string method that determines where the string begins with the characters of a specified string
+   - Checks if the word starts with the lowercase search query
+   - `.startsWith()` is a string method that determines where the string begins with the characters of a specified string
