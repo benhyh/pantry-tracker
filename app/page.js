@@ -164,8 +164,9 @@ export default function Home() {
             top="50%"
             left="50%"
             width={400}
-            backgroundColor="white"
-            border="2px solid black"
+            backgroundColor="#3d3d3d"
+            color="orange"
+            border="2px solid #4d4d4d"
             boxShadow={24}
             p={4}
             display="flex"
@@ -182,13 +183,38 @@ export default function Home() {
                 fullWidth
                 value={itemName}
                 onChange={(e) => setItemName(e.target.value)}
-              ></TextField>
+                sx={{
+                  "& .MuiOutlinedInput-root": {
+                    "& fieldset": {
+                      borderColor: "orange", // Change outline color
+                    },
+                    "&:hover fieldset": {
+                      borderColor: "orange", // Lighter shade of orange
+                    },
+                    "&.Mui-focused fieldset": {
+                      borderColor: "orange", // Change outline color when focused
+                    },
+                  },
+                  "& .MuiInputBase-input": {
+                    color: "white", // Change text color
+                  },
+                }}
+              />
               <Button
                 variant="outlined"
                 onClick={() => {
                   addItem(itemName);
                   setItemName("");
                   handleClose();
+                }}
+                sx={{
+                  color: "white",
+                  backgroundColor: "orange",
+                  fontWeight: "bold",
+                  "&:hover": {
+                    backgroundColor: "#CC7000",
+                    borderColor: "#CC7000",
+                  },
                 }}
               >
                 Add
@@ -226,6 +252,7 @@ export default function Home() {
                   edge="start"
                   color="inherit"
                   aria-label="open drawer"
+                  sx={{ mr: 2 }}
                 ></IconButton>
                 <Typography
                   variant="h6"
