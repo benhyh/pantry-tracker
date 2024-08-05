@@ -24,7 +24,6 @@ import {
   query,
   setDoc,
 } from "firebase/firestore";
-import { SettingsEthernet } from "@mui/icons-material";
 
 export default function Home() {
   const [pantryItem, setPantryItem] = useState([]);
@@ -122,6 +121,14 @@ export default function Home() {
     },
   }));
 
+  const ScrollableStack = styled(Stack)(({ theme }) => ({
+    "&::-webkit-scrollbar": {
+      display: "none",
+    },
+    "-ms-overflow-style": "none",
+    "scrollbar-width": "none",
+  }));
+
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
   };
@@ -189,8 +196,20 @@ export default function Home() {
             </Stack>
           </Box>
         </Modal>
-        <Typography variant="h1">Pantry Tracker App</Typography>
+        <Typography color="orange" variant="h1" fontWeight="bold">
+          Pantry Tracker
+        </Typography>
         <Button
+          sx={{
+            backgroundColor: "orange",
+            color: "white",
+            fontWeight: "bold",
+            transition: "all 0.75s ease",
+            "&:hover": {
+              backgroundColor: "#CC7000",
+              transform: "scale(1.1)",
+            },
+          }}
           variant="contained"
           onClick={() => {
             handleOpen();
@@ -200,7 +219,7 @@ export default function Home() {
         </Button>
         <Box border="1px solid #333">
           <Box sx={{ flexGrow: 1 }}>
-            <AppBar position="static">
+            <AppBar position="static" sx={{ backgroundColor: "#4a4a4a" }}>
               <Toolbar>
                 <IconButton
                   size="large"
@@ -212,9 +231,14 @@ export default function Home() {
                   variant="h6"
                   noWrap
                   component="div"
-                  sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
+                  sx={{
+                    flexGrow: 1,
+                    display: { xs: "none", sm: "block" },
+                    color: "orange",
+                    fontWeight: "bold",
+                  }}
                 >
-                  Pantry Tracker App
+                  Pantry Items
                 </Typography>
                 <Search>
                   <SearchIconWrapper>
@@ -230,7 +254,13 @@ export default function Home() {
               </Toolbar>
             </AppBar>
           </Box>
-          <Stack width="800px" height="300px" spacing={2} overflow="auto">
+          <ScrollableStack
+            display="flex"
+            width="45rem"
+            height="15rem"
+            spacing={2}
+            overflow="auto"
+          >
             {filteredItems.map(({ name, quantity }) => (
               <Box
                 key={name}
@@ -242,23 +272,51 @@ export default function Home() {
                 bgColor="#f0f0f0"
                 padding={5}
               >
-                <Typography variant="h3" color="black" textAlign="center">
+                <Typography variant="h3" color="orange" textAlign="center">
                   {name.charAt(0).toUpperCase() + name.slice(1)}
                 </Typography>
-                <Typography variant="h3" color="black" textAlign="center">
+                <Typography variant="h3" color="white" textAlign="center">
                   {quantity}
                 </Typography>
                 <Stack direction="row" spacing={2}>
-                  <Button variant="contained" onClick={() => addItem(name)}>
-                    Add Item
+                  <Button
+                    sx={{
+                      backgroundColor: "orange",
+                      color: "white",
+                      fontWeight: "bold",
+                      fontSize: "1.5rem",
+                      transition: "all 0.75s ease",
+                      "&:hover": {
+                        backgroundColor: "#CC7000",
+                        transform: "scale(1.1)",
+                      },
+                    }}
+                    variant="contained"
+                    onClick={() => addItem(name)}
+                  >
+                    +
                   </Button>
-                  <Button variant="contained" onClick={() => removeItem(name)}>
-                    Remove
+                  <Button
+                    sx={{
+                      backgroundColor: "orange",
+                      color: "white",
+                      fontWeight: "bold",
+                      fontSize: "1.5rem",
+                      transition: "all 0.75s ease",
+                      "&:hover": {
+                        backgroundColor: "#CC7000",
+                        transform: "scale(1.1)",
+                      },
+                    }}
+                    variant="contained"
+                    onClick={() => removeItem(name)}
+                  >
+                    -
                   </Button>
                 </Stack>
               </Box>
             ))}
-          </Stack>
+          </ScrollableStack>
         </Box>
       </Box>
     </>
